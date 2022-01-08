@@ -1,0 +1,69 @@
+import random
+
+def random_number(nb_digits):
+    # Return a number selected number of digits. Each digits is between 1 and 4.
+    numbers  = ""
+    while len(numbers) != nb_digits:       
+        number = random.randint(1,nb_digits)
+        number_str = str(number)
+        if number_str not in numbers:
+            numbers += number_str
+    print("Password is",numbers)
+    return numbers
+
+def guessing(password):
+    guess = "" 
+    print("The secret number is",len(password),"digits long. Good luck!")
+    while guess != password:
+        nb = 0
+        count = 0
+        guess =input("Please guess a number: ")
+        for i in password:
+            if password[nb] == guess[nb]:
+                count += 1
+            nb += 1
+        print("You found",count,"correct.")
+        if count == len(password):
+            print("Finally, you found the secret number!")
+            print()
+        else:
+            print("Please try again...")
+            print()
+
+def diff_level():
+    print("Welcome to the guessing number game!")
+    print()
+    print("Please select a difficulty level.")
+    levels = ("1) Easy", "2) Medium", "3) Hard")
+    for level in levels:
+        print(level)
+    choice = ""
+    int_choice = 0
+    while not 4 > int_choice > 0:
+        choice = input("Select a number between 1 and 3: ")
+        try:
+            int(choice)
+            int(choice) > 0     
+        except:
+            print("Please only use a valid number for selecting a choice...")
+        else:
+            int_choice = int(choice)
+            if int_choice == 1:
+                print("Easy")
+                return 4
+            elif int_choice == 2:
+                print("Medium")
+                return 6
+            elif int_choice == 3:
+                print("Hard")
+                return 8
+            else:
+                int_choice = 0
+                print("Please select an existing choice...")
+                
+def guess_number_game():
+    difficulty = diff_level()
+    password = random_number(difficulty)
+    guessing(password)
+
+guess_number_game()
