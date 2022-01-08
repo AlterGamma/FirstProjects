@@ -8,7 +8,7 @@ def random_number(nb_digits):
         number_str = str(number)
         if number_str not in numbers:
             numbers += number_str
-    print("Password is",numbers)
+    # print("Password is",numbers)
     return numbers
 
 def guessing(password):
